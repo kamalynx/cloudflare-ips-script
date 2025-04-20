@@ -39,7 +39,7 @@ def main() -> None:
 
     ips = ip4_result.split('\n') + ip6_result.split('\n')
 
-    nginx_config = '\n'.join(map(lambda ip: f'set_real_ip_from: {ip};', ips))
+    nginx_config = '\n'.join(map(lambda ip: f'set_real_ip_from {ip};', ips))
 
     with open(path / 'cloudflare.conf', 'w+') as file:
         file.write(nginx_config + '\n')
